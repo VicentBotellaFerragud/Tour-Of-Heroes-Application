@@ -1,0 +1,37 @@
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 4px;
+    padding: 1rem;
+
+    h2 {
+        color: #A80000;
+        font-weight: lighter;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+.message {
+    margin-bottom: 1rem;
+}
+
+.clear {
+    color: #333;
+    background-color: #eee;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 12px;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.clear:hover {
+    color: white;
+    background-color: #42545C;
+}
