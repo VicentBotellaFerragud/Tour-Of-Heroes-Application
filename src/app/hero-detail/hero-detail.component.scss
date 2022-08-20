@@ -1,0 +1,38 @@
+.hero-details-container {
+    background-color: #369;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    padding: 1rem;
+    text-align: center;
+
+    h2 {
+        color: white;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+.hero-id {
+    margin-bottom: 1rem;
+}
+
+.hero-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    input {
+        margin-left: .5rem;
+        padding: .5rem;
+        background-color: rgb(149, 170, 191);
+        border: none;
+        border-radius: 4px;
+        color: white;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
