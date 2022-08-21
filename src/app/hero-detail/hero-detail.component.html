@@ -11,6 +11,10 @@
         <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
     </div>
 
+    <button class="save" (click)="save()">SAVE</button>
+
+    <button class="delete" (click)="delete(hero)">DELETE</button>
+
     <button class="back" (click)="goBack()">BACK</button>
 
 </div>

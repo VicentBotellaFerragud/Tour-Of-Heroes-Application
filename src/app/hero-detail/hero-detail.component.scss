@@ -38,17 +38,29 @@
     }
 }
 
-.back {
+.save, .delete, .back {
     color: #333;
     background-color: #eee;
     font-family: Arial, Helvetica, sans-serif;
     padding: 1rem;
     border-radius: 4px;
     font-size: 1rem;
-    margin: 0;
+    margin-inline: .5rem;
+    margin-block: 0;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.save:hover {
+    background-color: rgb(120, 100, 217);
+}
+
+.delete:hover {
+    background-color: red;
 }
 
 .back:hover {
-    color: white;
     background-color: #42545C;
 }

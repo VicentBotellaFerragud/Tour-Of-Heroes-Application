@@ -1,10 +1,34 @@
-<h2>My Heroes</h2>
+<h2>All Heroes</h2>
 
-<div class="heroes-container">
+<ng-container *ngIf="heroes; else loading">
 
-    <button *ngFor="let hero of heroes" type="button" routerLink="/heroes/{{ hero.id }}">
-        <span class="badge">{{ hero.id }}. </span>
-        <span class="name">{{ hero.name }}</span>
+    <div class="heroes-container">
+
+        <button *ngFor="let hero of heroes" type="button" routerLink="/heroes/{{ hero.id }}">
+            <span class="badge">{{ hero.id }}. </span>
+            <span class="name">{{ hero.name }}</span>
+        </button>
+
+    </div>
+
+</ng-container>
+
+<ng-template #loading>
+
+    <div *ngIf="!heroes" class="loading">
+
+        <span>LOADING...</span>
+
+    </div>
+
+</ng-template>
+
+<div class="add-hero">
+    <label for="new-hero">Hero name: </label>
+    <input id="new-hero" #heroName />
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">
+        Add hero
     </button>
-
 </div>

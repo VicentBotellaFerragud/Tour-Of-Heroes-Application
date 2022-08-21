@@ -13,7 +13,7 @@ export class HeroDetailComponent implements OnInit {
 
   hero!: Hero;
 
-  constructor( private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
 
   ngOnInit(): void {
 
@@ -31,6 +31,22 @@ export class HeroDetailComponent implements OnInit {
 
     });
 
+  }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
+    }
+  }
+
+  /**
+ * Although the component delegates hero deletion to the HeroService, it remains responsible for updating its own list of heroes. 
+ * The component's delete() method immediately removes the hero-to-delete from that list, anticipating that the HeroService succeeds on the server.
+ * @param hero 
+ */
+  delete(hero: Hero): void {
+    this.heroService.deleteHero(hero.id).subscribe(() => this.goBack());
   }
 
   goBack() {
