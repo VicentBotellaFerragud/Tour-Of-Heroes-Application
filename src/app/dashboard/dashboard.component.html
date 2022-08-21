@@ -1,7 +1,21 @@
 <h2>Top 5 Heroes</h2>
 
-<div class="top-heroes-container">
+<ng-container *ngIf="heroes; else loading">
 
-  <a *ngFor="let hero of heroes" routerLink="/heroes/{{ hero.id }}">{{ hero.name }}</a>
+  <div class="top-heroes-container" >
 
-</div>
+    <a *ngFor="let hero of heroes" routerLink="/heroes/{{ hero.id }}">{{ hero.name }}</a>
+  
+  </div>
+
+</ng-container>
+
+<ng-template #loading>
+
+  <div *ngIf="!heroes" class="loading">
+
+    <span>LOADING...</span>
+  
+  </div>
+
+</ng-template>
