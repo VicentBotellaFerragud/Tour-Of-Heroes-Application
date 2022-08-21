@@ -1,5 +1,13 @@
 <h1>Welcome to the Tour of Heroes!</h1>
 
-<app-heroes></app-heroes>
+<nav>
+
+    <a routerLink="/dashboard" [class.current-location]="isTheCurrentLocation('/dashboard')">DASHBOARD</a>
+
+    <a routerLink="/heroes" [class.current-location]="isTheCurrentLocation('/heroes')">HEROES</a>
+    
+</nav>
+
+<router-outlet></router-outlet>
 
 <app-messages></app-messages>
