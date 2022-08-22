@@ -8,7 +8,7 @@ import { MessageService } from '../services/message.service';
 })
 export class MessagesComponent implements OnInit {
 
-  //The messageService must be public, otherwise the template can't make use of its properties or methods.
+  //The message service must be public, otherwise the template cannot make use of its variables and methods.
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void { }
