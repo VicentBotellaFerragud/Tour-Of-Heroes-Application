@@ -38,7 +38,7 @@ export class HeroesComponent implements OnInit, OnDestroy {
 
       this.heroes = data;
 
-    });
+      });
 
   }
 
