@@ -14,12 +14,19 @@ export class HeroesComponent implements OnInit {
 
   constructor(private heroService: HeroService, private messageService: MessageService) { }
 
+  /**
+   * Calls the getHeroes function.
+   */
   ngOnInit(): void { 
 
     this.getHeroes();
 
   }
 
+  /**
+   * Calls the getHeroes function from the hero service (to get all heroes from the server) and assigns the data obtained by calling this function
+   * (all the heroes from the server) to the heroes array.
+   */
   getHeroes() {
 
     this.heroService.getHeroes().subscribe((data: Hero[]) => {
@@ -30,15 +37,29 @@ export class HeroesComponent implements OnInit {
 
   }
 
+  /**
+   * Calls the addHero function from the hero service (to add a new hero to the server) and pusehs the data obtained by calling this function (the 
+   * recently created hero) to the heroes array.
+   * @param name - This is the passed-in name.
+   * @returns - nothing. The function just breaks if there's no passed-in value.
+   */
   add(name: string): void {
+    
     name = name.trim();
-    if (!name) { return; }
+
+    if (!name) { 
+      
+      return; 
+    
+    }
+
     this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
+      .subscribe(data => {
+      
+        this.heroes.push(data);
+      
       });
+
   }
-
-
 
 }
