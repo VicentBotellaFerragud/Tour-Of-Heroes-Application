@@ -5,8 +5,10 @@
     <div class="heroes-container">
 
         <button *ngFor="let hero of heroes" type="button" routerLink="/heroes/{{ hero.id }}">
+          
             <span class="badge">{{ hero.id }}. </span>
             <span class="name">{{ hero.name }}</span>
+          
         </button>
 
     </div>
