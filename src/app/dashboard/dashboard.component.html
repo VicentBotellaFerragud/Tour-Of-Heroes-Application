@@ -2,7 +2,7 @@
 
 <ng-container *ngIf="heroes; else loading">
 
-  <div class="top-heroes-container" >
+  <div class="top-heroes-container">
 
     <a *ngFor="let hero of heroes" routerLink="/heroes/{{ hero.id }}">{{ hero.name }}</a>
   
