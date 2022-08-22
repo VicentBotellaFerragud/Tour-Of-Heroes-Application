@@ -20,9 +20,10 @@ export class HeroService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   /**
-   * GET METHOD: fetches all heroes from server. If the observable stream fails, the catchError operator intercepts the error and passes it to the 
+   * GET METHOD: fetches all heroes from the server. If the observable stream fails, the catchError operator intercepts the error and passes it to the 
    * error handling function, which reports the error and returns an innocuous result so that the application can keep working (this error handling 
-   * procedure is used in all methods of this service.).
+   * procedure is used in all methods of this service).
+   * @returns - (from the server) all heroes.
    */
   getHeroes(): Observable<Hero[]> {
 
@@ -40,6 +41,7 @@ export class HeroService {
    * GET BY ID METHOD: does exactly the same as the previous method, but in this case just fetches one hero (the hero that corresponds to the 
    * passed-in id).
    * @param id - This is the passed-in id, which corresponds to the to-be-fetched hero.
+   * @returns - (from the server) the hero whose id matches the passed-in id.
    */  
   getHero(id: number): Observable<Hero> {
     
@@ -58,6 +60,7 @@ export class HeroService {
   /** 
    * PUT METHOD: updates the passed-in hero on the server.
    * @param hero - This is the passed-in hero.
+   * @returns - (from the server) the passed-in hero updated.
    */
   updateHero(hero: Hero): Observable<any> {
     
@@ -74,6 +77,7 @@ export class HeroService {
   /** 
    * POST METHOD: adds the passed-in hero to the server.
    * @param hero - This is the passed-in hero.
+   * @returns - (from the server) the passed-in heroe.
    */
   addHero(hero: Hero): Observable<Hero> {
     
@@ -90,6 +94,7 @@ export class HeroService {
   /** 
    * DELETE METHOD: deletes the hero that corresponds to the passed-in id.
    * @param id - This is the passed-in id, which corresponds to the to-be-deleted hero.
+   * @returns - (from the server) the hero whose id matches the passed-in id.
    */
   deleteHero(id: number): Observable<Hero> {
     
@@ -107,12 +112,13 @@ export class HeroService {
   /**
    * GET BY SEARCH METHOD: does exactly the same as the "GET BY ID" method, but in this case a search term is passed in instead of an id. 
    * @param term - This is the passed-in term, which could correspond to one, several or no hero at all.
+   * @returns - (from the server) all heroes that match/contain the passed-in search term.
    */
   searchHeroes(term: string): Observable<Hero[]> {
     
     if (!term.trim()) {
       
-      return of([]);
+      return of([]); //Returns an observable of "[]" if the function is called and there is no search term.
       
     }
     
@@ -130,6 +136,7 @@ export class HeroService {
    * Handles http operations that fail.
    * @param operation - This is the name of the operation that failed.
    * @param result - This is the optional value to return as the observable result.
+   * @returns - the passed-in result as an observable.
    */
   private handleError<T>(operation = 'operation', result?: T) {
     
