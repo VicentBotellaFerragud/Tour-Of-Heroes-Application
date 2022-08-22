@@ -146,7 +146,7 @@ export class HeroService {
   }
 
   /** 
-   * Logs the passed-in message making use of the the MessageService.
+   * Logs the passed-in message making use of the the message service.
    * @param message - This is the passed-in message.
    */
   private log(message: string) {
