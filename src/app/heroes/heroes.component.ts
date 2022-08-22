@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../interfaces/hero';
+import { Subject, takeUntil } from 'rxjs';
 import { HeroService } from '../services/hero.service';
 import { MessageService } from '../services/message.service';
 
@@ -8,9 +9,11 @@ import { MessageService } from '../services/message.service';
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.scss']
 })
-export class HeroesComponent implements OnInit {
+export class HeroesComponent implements OnInit, OnDestroy {
 
   heroes!: Hero[];
+
+  destroy = new Subject();
 
   constructor(private heroService: HeroService, private messageService: MessageService) { }
 
@@ -29,7 +32,9 @@ export class HeroesComponent implements OnInit {
    */
   getHeroes() {
 
-    this.heroService.getHeroes().subscribe((data: Hero[]) => {
+    this.heroService.getHeroes()
+      .pipe(takeUntil(this.destroy))
+      .subscribe((data: Hero[]) => {
 
       this.heroes = data;
 
@@ -54,11 +59,21 @@ export class HeroesComponent implements OnInit {
     }
 
     this.heroService.addHero({ name } as Hero)
-      .subscribe(data => {
+      .pipe(takeUntil(this.destroy))
+      .subscribe((data: Hero) => {
       
         this.heroes.push(data);
       
       });
+
+  }
+  
+  /**
+   * Sets the local variable "destroy" to "true" so that all observables in the component are unsubscribed when this is "destroyed".
+   */
+  ngOnDestroy(): void {
+    
+    this.destroy.next(true);
 
   }
 
