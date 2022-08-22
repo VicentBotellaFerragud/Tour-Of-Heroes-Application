@@ -11,6 +11,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
   /**
    * Creates the hero "database".
+   * @returns - an object with all heroes and their information.
    */
   createDb() {
 
@@ -36,6 +37,7 @@ export class InMemoryDataService implements InMemoryDbService {
    * Ensures that a hero always has an id. If the heroes array is empty, it returns the initial id (1). If, on the contrary, the heroes array is not 
    * empty, it returns the highest hero id + 1.
    * @param heroes - This is the passed-in array (in this case/project, always the heroes array).
+   * @returns - the highest hero id + 1 or the initial id (1).
    */
   genId(heroes: Hero[]): number {
 
