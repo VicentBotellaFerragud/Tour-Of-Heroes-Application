@@ -3,15 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../services/hero.service';
 import { Location } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
   styleUrls: ['./hero-detail.component.scss']
 })
-export class HeroDetailComponent implements OnInit {
+export class HeroDetailComponent implements OnInit, OnDestroy {
 
   hero!: Hero;
+
+  destroy = new Subject();
 
   constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
 
@@ -32,11 +35,13 @@ export class HeroDetailComponent implements OnInit {
 
     let id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.heroService.getHero(id).subscribe((data: Hero) => {
+    this.heroService.getHero(id)
+      .pipe(takeUntil(this.destroy))
+      .subscribe((data: Hero) => {
 
-      this.hero = data;
+        this.hero = data;
 
-    });
+      });
 
   }
 
@@ -48,7 +53,8 @@ export class HeroDetailComponent implements OnInit {
     
     if (this.hero) {
       
-      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
       
     }
     
@@ -60,7 +66,8 @@ export class HeroDetailComponent implements OnInit {
    */
   delete(): void {
     
-    this.heroService.deleteHero(this.hero.id).subscribe(() => this.goBack());
+    this.heroService.deleteHero(this.hero.id)
+      .subscribe(() => this.goBack());
 
   }
 
@@ -70,6 +77,15 @@ export class HeroDetailComponent implements OnInit {
   goBack() {
 
     this.location.back();
+
+  }
+
+  /**
+   * Sets the local variable "destroy" to "true" so that all observables in the component are unsubscribed when this is "destroyed".
+   */
+  ngOnDestroy(): void {
+    
+    this.destroy.next(true);
 
   }
 
