@@ -15,15 +15,22 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private heroService: HeroService, private location: Location) { }
 
+  /**
+   * Calls the getHero function.
+   */
   ngOnInit(): void {
 
     this.getHero();
 
   }
 
+  /**
+   * Gets the hero id from the url and passes it in when calling the getHero function from the hero service. Then, when the to-be-fetched hero
+   * returns, the function assigns it to the local variable hero.
+   */
   getHero(): void {
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    let id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.heroService.getHero(id).subscribe((data: Hero) => {
 
@@ -33,22 +40,33 @@ export class HeroDetailComponent implements OnInit {
 
   }
 
+  /**
+   * By calling the updateHero function from the hero service updates the name of the current hero (the hero corresponding to the local variable hero)
+   * and then navigates the user to the previous view.
+   */
   save(): void {
+    
     if (this.hero) {
-      this.heroService.updateHero(this.hero)
-        .subscribe(() => this.goBack());
+      
+      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+      
     }
+    
   }
 
   /**
- * Although the component delegates hero deletion to the HeroService, it remains responsible for updating its own list of heroes. 
- * The component's delete() method immediately removes the hero-to-delete from that list, anticipating that the HeroService succeeds on the server.
- * @param hero 
- */
-  delete(hero: Hero): void {
-    this.heroService.deleteHero(hero.id).subscribe(() => this.goBack());
+   * By calling the deleteHero function from the hero service deletes the current hero (the hero corresponding to the local variable hero) and then
+   * navigates the user to the previous view.
+   */
+  delete(): void {
+    
+    this.heroService.deleteHero(this.hero.id).subscribe(() => this.goBack());
+
   }
 
+  /**
+   * Navigates the user to the previous view.
+   */
   goBack() {
 
     this.location.back();
