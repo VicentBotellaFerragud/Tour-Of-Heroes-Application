@@ -26,7 +26,7 @@ export class AppComponent implements AfterContentChecked {
   /**
    * Checks if the passed-in url corresponds to the current url.
    * @param url - This is the passed-in url.
-   * @returns - true or false, depending on wehter the passed-in url corresponds to the current url or not. 
+   * @returns - true or false, depending on wether the passed-in url corresponds to the current url or not. 
    */
   isTheCurrentLocation(url: string) {
 
