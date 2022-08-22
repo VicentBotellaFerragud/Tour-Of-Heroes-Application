@@ -3,12 +3,16 @@
     <h2>{{ hero.name | uppercase }} Details</h2>
 
     <div class="hero-id">
-        id: {{ hero.id }}
+      
+        <span>id: {{ hero.id }}</span>
+          
     </div>
 
     <div class="hero-name">
+      
         <label for="hero-name">Hero name: </label>
         <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+      
     </div>
 
     <button class="save" (click)="save()">SAVE</button>
