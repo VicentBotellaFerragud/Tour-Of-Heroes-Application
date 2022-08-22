@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,13 +12,13 @@ export class AppComponent implements AfterContentChecked {
 
   url!: string;
 
-  constructor (private router: Router) { }
+  constructor(private router: Router) { }
 
   /**
    * Gives the local variable "url" the value of the current url once the component has been initiated.
    */
   ngAfterContentChecked(): void {
-    
+
     this.url = this.router.url;
 
   }

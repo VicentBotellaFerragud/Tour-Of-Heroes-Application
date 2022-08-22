@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../services/hero.service';
@@ -28,8 +28,8 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Gets the hero id from the url and passes it in when calling the getHero function from the hero service. Then, when the to-be-fetched hero
-   * returns, the function assigns it to the local variable hero.
+   * Gets the hero id from the url and passes it in when calling the getHero function from the hero service. Then, when the to-be-fetched 
+   * hero is returned, the function assigns it to the local variable hero.
    */
   getHero(): void {
 
@@ -46,8 +46,8 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * By calling the updateHero function from the hero service updates the name of the current hero (the hero corresponding to the local variable hero)
-   * and then navigates the user to the previous view.
+   * By calling the updateHero function from the hero service updates the name of the current hero (the hero corresponding to the local 
+   * variable hero) and then navigates the user to the previous view.
    */
   save(): void {
     
@@ -61,8 +61,8 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * By calling the deleteHero function from the hero service deletes the current hero (the hero corresponding to the local variable hero) and then
-   * navigates the user to the previous view.
+   * By calling the deleteHero function from the hero service deletes the current hero (the hero corresponding to the local variable hero) 
+   * and then navigates the user to the previous view.
    */
   delete(): void {
     

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 import { HeroService } from '../services/hero.service';
 import { Subject, takeUntil } from 'rxjs';
@@ -26,7 +26,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Calls the getHeroes function from the hero service and assigns part of the obtained data (the first 5 heroes from the server) to the heroes array.
+   * Calls the getHeroes function from the hero service and assigns part of the obtained data (the first 5 heroes from the server) to the 
+   * heroes array.
    */
   getHeroes() {
 
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy))
       .subscribe((data: Hero[]) => {
 
-      this.heroes = data.slice(0, 5);
+        this.heroes = data.slice(0, 5);
 
       });
 

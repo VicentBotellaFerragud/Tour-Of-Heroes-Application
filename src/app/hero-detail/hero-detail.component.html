@@ -1,24 +1,38 @@
-<div *ngIf="hero" class="hero-details-container">
+<ng-container *ngIf="hero; else loading">
+    
+    <div class="hero-details-container">
 
-    <h2>{{ hero.name | uppercase }} Details</h2>
+        <h2>{{ hero.name | uppercase }} Details</h2>
 
-    <div class="hero-id">
-      
-        <span>id: {{ hero.id }}</span>
-          
+        <div class="hero-id">
+
+            <span>id: {{ hero.id }}</span>
+
+        </div>
+
+        <div class="hero-name">
+
+            <label for="hero-name">Hero name: </label>
+            <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+
+        </div>
+
+        <button class="save" (click)="save()">SAVE</button>
+
+        <button class="delete" (click)="delete()">DELETE</button>
+
+        <button class="back" (click)="goBack()">BACK</button>
+
     </div>
 
-    <div class="hero-name">
-      
-        <label for="hero-name">Hero name: </label>
-        <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
-      
+</ng-container>
+
+<ng-template #loading>
+
+    <div *ngIf="!hero" class="loading">
+
+        <span>LOADING...</span>
+
     </div>
 
-    <button class="save" (click)="save()">SAVE</button>
-
-    <button class="delete" (click)="delete()">DELETE</button>
-
-    <button class="back" (click)="goBack()">BACK</button>
-
-</div>
+</ng-template>

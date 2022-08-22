@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Hero } from '../interfaces/hero';
-import { HEROES } from '../mocks/mock-heroes';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -20,9 +19,9 @@ export class HeroService {
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   /**
-   * GET METHOD: fetches all heroes from the server. If the observable stream fails, the catchError operator intercepts the error and passes it to the 
-   * error handling function, which reports the error and returns an innocuous result so that the application can keep working (this error handling 
-   * procedure is used in all methods of this service).
+   * GET METHOD: fetches all heroes from the server. If the observable stream fails, the catchError operator intercepts the error and passes
+   * it to the error handling function, which reports the error and returns an innocuous result so that the application can keep working 
+   * (this error handling procedure is used in all methods of this service).
    * @returns - (from the server) all heroes.
    */
   getHeroes(): Observable<Hero[]> {
@@ -38,8 +37,8 @@ export class HeroService {
   }
 
   /** 
-   * GET BY ID METHOD: does exactly the same as the previous method, but in this case just fetches one hero (the hero that corresponds to the 
-   * passed-in id).
+   * GET BY ID METHOD: does exactly the same as the previous method, but in this case just fetches one hero (the hero that corresponds to 
+   * the passed-in id).
    * @param id - This is the passed-in id, which corresponds to the to-be-fetched hero.
    * @returns - (from the server) the hero whose id matches the passed-in id.
    */  
@@ -100,12 +99,13 @@ export class HeroService {
     
     let url = `${this.heroesUrl}/${id}`;
 
-    return this.http.delete<Hero>(url, this.httpOptions).pipe(
+    return this.http.delete<Hero>(url, this.httpOptions)
+      .pipe(
       
-      tap(_ => this.log(`You deleted hero with id ${id}.`)),
-      catchError(this.handleError<Hero>('deleteHero'))
+        tap(_ => this.log(`You deleted hero with id ${id}.`)),
+        catchError(this.handleError<Hero>('deleteHero'))
       
-    );
+      );
     
   }
 
@@ -134,7 +134,7 @@ export class HeroService {
 
   /**
    * Handles http operations that fail.
-   * @param operation - This is the name of the operation that failed.
+   * @param operation - This is the name of the operation that fails.
    * @param result - This is the optional value to return as the observable result.
    * @returns - the passed-in result as an observable.
    */

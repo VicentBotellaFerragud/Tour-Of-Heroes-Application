@@ -18,8 +18,8 @@ export class HeroSearchComponent implements OnInit {
   constructor(private heroService: HeroService) { }
 
   /**
-   * The function assigns to the heroes$ array the data obtained by calling the searchHeroes function of the hero service (all heroes that match the 
-   * user's search -all heroes whose names contain part of or are the same as the search term-).
+   * The function assigns to the heroes$ array the data obtained from calling the searchHeroes function from the hero service (all heroes 
+   * that match the user's search -all heroes whose names contain part of or are the same as the search term-).
    */
   ngOnInit(): void {
     

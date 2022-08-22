@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Hero } from '../interfaces/hero';
 import { Subject, takeUntil } from 'rxjs';
 import { HeroService } from '../services/hero.service';
@@ -27,8 +27,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Calls the getHeroes function from the hero service (to get all heroes from the server) and assigns the obtained data (all the heroes from the server)
-   * to the heroes array.
+   * Calls the getHeroes function from the hero service (to get all heroes from the server) and assigns the obtained data (all the heroes 
+   * from the server) to the heroes array.
    */
   getHeroes() {
 
@@ -43,8 +43,8 @@ export class HeroesComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Calls the addHero function from the hero service (to add a new hero to the server) and pushes the obtained data (the recently created hero) to the
-   * heroes array.
+   * Calls the addHero function from the hero service (to add a new hero to the server) and pushes the obtained data (the recently created 
+   * hero) into the heroes array.
    * @param name - This is the passed-in name.
    * @returns - nothing. The function just breaks if there's no passed-in value.
    */
