@@ -9,6 +9,9 @@ export class InMemoryDataService implements InMemoryDbService {
 
   constructor() { }
 
+  /**
+   * Creates the hero "database".
+   */
   createDb() {
 
     const heroes = [
@@ -29,14 +32,15 @@ export class InMemoryDataService implements InMemoryDbService {
 
   }
 
-  // Overrides the genId method to ensure that a hero always has an id.
-  // If the heroes array is empty,
-  // the method below returns the initial number (11).
-  // if the heroes array is not empty, the method below returns the highest
-  // hero id + 1.
+  /**
+   * Ensures that a hero always has an id. If the heroes array is empty, it returns the initial id (1). If, on the contrary, the heroes array is not 
+   * empty, it returns the highest hero id + 1.
+   * @param heroes - This is the passed-in array (in this case/project, always the heroes array).
+   */
   genId(heroes: Hero[]): number {
 
     return heroes.length > 0 ? Math.max(...heroes.map(hero => hero.id)) + 1 : 1;
 
   }
+  
 }
