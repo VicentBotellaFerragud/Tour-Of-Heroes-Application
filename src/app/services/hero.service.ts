@@ -59,7 +59,7 @@ export class HeroService {
   /** 
    * PUT METHOD: updates the passed-in hero on the server.
    * @param hero - This is the passed-in hero.
-   * @returns - (from the server) the passed-in hero updated.
+   * @returns - nothing. It just updates the passed-in hero on the server.
    */
   updateHero(hero: Hero): Observable<any> {
     
@@ -91,9 +91,9 @@ export class HeroService {
   }
 
   /** 
-   * DELETE METHOD: deletes the hero that corresponds to the passed-in id.
+   * DELETE METHOD: deletes (on the server) the hero that corresponds to the passed-in id.
    * @param id - This is the passed-in id, which corresponds to the to-be-deleted hero.
-   * @returns - (from the server) the hero whose id matches the passed-in id.
+   * @returns - nothing. It just deletes (on the server) the hero that corresponds to the passed-in id.
    */
   deleteHero(id: number): Observable<Hero> {
     
